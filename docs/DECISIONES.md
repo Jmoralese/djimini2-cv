@@ -1,0 +1,56 @@
+# Decisiones técnicas
+
+Registro corto; añadir entradas solo cuando condicionen trabajo posterior.
+Formato: fecha, decisión, motivo/evidencia y cuándo revisarla.
+
+## D-001 · Android nativo y proyecto personal · 2026-09-06
+
+**Decisión:** Kotlin, Android Studio, sin iOS ni backend inicial. Un módulo de app
+al empezar y UI nueva preferentemente Compose.
+
+**Motivo:** el propietario pide Android nativo y calidad proporcionada a un uso
+personal. La separación en paquetes y un adaptador DJI basta inicialmente.
+
+**Revisión:** si una necesidad real exige otro módulo o integración; no por simetría.
+
+## D-002 · Línea DJI Mobile SDK V4 · 2026-09-06
+
+**Decisión:** usar V4 para el Mini 2 original. Referencia de integración: 4.18,
+pendiente de probar en el teléfono y fijar dependencias en el proyecto.
+
+**Evidencia:** [repositorio oficial V4](https://github.com/dji-sdk/Mobile-SDK-Android).
+La compatibilidad y sus límites se detallan en [ENTORNO_ANDROID.md](ENTORNO_ANDROID.md).
+V5 no se adopta automáticamente como actualización del SDK para este dron.
+
+**Consecuencia:** verificar APIs por modelo, bibliotecas nativas, permisos y Android
+reciente antes de prometer funcionamiento. No arrastrar el build antiguo de la
+muestra oficial completo sin comprobarlo.
+
+V4.18 anuncia adaptación a Android 14 y el soporte DJI ha comunicado el fin de
+actualizaciones iterativas de V4. El ensayo del teléfono es una condición de
+viabilidad, especialmente con Android 15+ y páginas de 16 KB; véanse las fuentes
+en el informe de entorno.
+
+**Revisión:** si DJI cambia el soporte del modelo o si el ensayo real revela un bloqueo.
+
+## D-003 · Simulación independiente del SDK · 2026-09-06
+
+**Decisión:** UI y lógica dependen de una interfaz pequeña con implementación
+simulada y real. La variante simulada no inicializa ni empaqueta innecesariamente DJI.
+
+**Motivo:** desarrollo y regresiones sin dron conectado; el emulador x86_64 no
+valida las bibliotecas ARM, USB ni comportamiento de vuelo del equipo real.
+
+**Revisión:** ajustar la separación de variantes al crear la primera app, conservando
+la posibilidad de probar sin hardware.
+
+## D-004 · Relevo en Git y herramientas de terminal locales · 2026-09-06
+
+**Decisión:** `AGENTS.md` común, `CLAUDE.md` importador, estado/tareas breves, Git
+local en `main` sin remoto. Scripts activan el SDK/JDK únicamente en la terminal.
+
+**Motivo:** alternancia entre IAs sin duplicar reglas ni cambiar herramientas de otros
+proyectos. No se publica en GitHub hasta una petición posterior del propietario.
+
+**Revisión:** al crear el wrapper se fijará la matriz de compilación; al publicar se
+añadirán remoto, licencia elegida y CI útil.

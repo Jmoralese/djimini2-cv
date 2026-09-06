@@ -1,0 +1,43 @@
+# Android / Gradle / IDE
+.gradle/
+.kotlin/
+.idea/
+*.iml
+**/build/
+.cxx/
+.externalNativeBuild/
+captures/
+local.properties
+
+# Credenciales, firma y datos personales de pruebas
+.env
+.env.*
+!.env.example
+secrets.properties
+keystore.properties
+*.jks
+*.keystore
+*.p12
+*.pem
+*.apk
+*.aab
+*.hprof
+*.log
+.local/
+
+# Preferencias y sesiones privadas de las IAs
+CLAUDE.local.md
+AGENTS.override.md
+.claude/settings.local.json
+.claude/agent-memory/
+.claude/worktrees/
+.codex-log/
+.worktrees/
+
+# Sistema
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# El wrapper sí se versionará cuando exista proyecto Android
+!gradle/wrapper/gradle-wrapper.jar
