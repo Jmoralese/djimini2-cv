@@ -64,10 +64,11 @@ Android que las consumirá sigue pendiente. [Detalle de integración](docs/INTEG
 
 ## Git
 
-Repositorio local con rama `main`. Sin remoto ni publicación en GitHub.
+Repositorio con rama `main` y remoto `origin` en GitHub:
+<https://github.com/Jmoralese/djimini2-cv>, publicado a petición del propietario.
 Los cambios se agrupan en commits pequeños; las ramas se usan para tareas de código.
 Las claves, compilaciones y datos personales quedan excluidos mediante `.gitignore`.
-La licencia de distribución del código propio se decidirá antes de publicarlo.
+La licencia de distribución del código propio sigue pendiente de decidir.
 
 La base prevista es Kotlin, Google MediaPipe Tasks Vision y DJI Mobile SDK V4.
 MediaPipe sustituye a OpenCV; no se incorpora como segunda biblioteca de visión.

@@ -4,7 +4,7 @@
 - Último cambio: carpeta `referencias/` con capturas de DJI Fly para inspiración
   de diseño, creada por Claude a petición del propietario. Relevo libre.
 - Cambio anterior: T-012, distribución y catálogo DJI V4.18 preparados por Codex.
-- Rama: `main`, sin remoto.
+- Rama: `main`, remoto `origin`: <https://github.com/Jmoralese/djimini2-cv>.
 - Fase: documentación y herramientas; todavía no hay aplicación Android.
 
 ## Resultado
@@ -83,9 +83,11 @@ y añade la de MediaPipe. No se instaló software ni se modificaron variables gl
 ## Estado de Git
 
 Actualización entregada en un commit local de `main`; consultar
-`git log -1 --oneline` para su identificador. No hay trabajo funcional de app
-sin terminar ni remoto configurado. Comprobar `git status` al retomar: las notas
-describen esta entrega, no sustituyen al estado real del checkout.
+`git log -1 --oneline` para su identificador. El propietario pidió publicar en
+GitHub: remoto `origin` configurado y `main` subida a
+<https://github.com/Jmoralese/djimini2-cv>. No hay trabajo funcional de app sin
+terminar. Comprobar `git status` al retomar: las notas describen esta entrega,
+no sustituyen al estado real del checkout.
 
 ## Próximo paso después de la preparación
 
@@ -98,4 +100,5 @@ Siguen pendientes modelo de móvil/Android y mando; no bloquean la preparación
 de la variante sin DJI. La rutina y su modelo tampoco están elegidos todavía.
 
 La clave DJI y el `applicationId` se resolverán al preparar la integración real,
-sin guardar credenciales en Git. GitHub queda para una petición posterior.
+sin guardar credenciales en Git. La licencia del código sigue sin decidirse
+aunque el repositorio ya esté publicado.
