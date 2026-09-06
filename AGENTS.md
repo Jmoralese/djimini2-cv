@@ -10,7 +10,7 @@ Las instrucciones explícitas del usuario prevalecen sobre estas normas del proy
 1. Lee [README.md](README.md), [estado](docs/ESTADO.md) y [tareas](docs/TAREAS.md).
 2. Ejecuta `git status --short --branch` y `git log -5 --oneline` (si hay commits).
 3. Lee los contratos afectados antes de editar: [producto](docs/CONTRATO_PRODUCTO.md),
-   [arquitectura](docs/CONTRATO_ARQUITECTURA.md), [calidad](docs/CONTRATO_CALIDAD.md)
+   [arquitectura](docs/CONTRATO_ARQUITECTURA.md), [calidad](docs/CONTRATO_CALIDAD.md),
    [visión en el móvil](docs/CONTRATO_VISION.md) y, para cualquier integración DJI,
    [operación del dron](docs/CONTRATO_DRON.md).
 4. Comprueba la [decisión técnica vigente](docs/DECISIONES.md) y el
@@ -30,6 +30,11 @@ Las instrucciones explícitas del usuario prevalecen sobre estas normas del proy
   cuentas de usuario ni infraestructura empresarial sin necesidad explícita.
 - DJI MSDK V4 es la línea para Mini 2. Verifica las APIs en fuentes oficiales:
   no copies APIs V5 ni asumas capacidades de otros drones.
+- Para desarrollar integración DJI, consulta la [guía oficial indicada por el
+  propietario](https://developer.dji.com/doc/mobile-sdk-tutorial/en/) y las
+  referencias del contrato de arquitectura. Ese portal corresponde a V5;
+  confirma APIs, dependencias y capacidades en documentación V4 antes de usarlas
+  para el Mini 2. El enlace no implica migrar el proyecto a V5.
 - Mantén DJI detrás de un adaptador y permite probar con un dron simulado.
 - MediaPipe sustituye a OpenCV por decisión explícita del propietario. Usa
   MediaPipe Tasks Vision precompilado desde Kotlin; no añadas OpenCV como

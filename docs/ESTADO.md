@@ -1,11 +1,16 @@
 # Estado para el próximo agente
 
 - Fecha: 2026-09-06.
-- Tarea: T-008, actualización a MediaPipe, completada por Codex. Relevo libre.
+- Último cambio: guía de referencia DJI incorporada por Codex. Relevo libre.
 - Rama: `main`, sin remoto.
 - Fase: documentación y herramientas; todavía no hay aplicación Android.
 
 ## Resultado
+
+La guía oficial indicada por el propietario está en README, AGENTS y los contratos
+de arquitectura/dron. El portal `https://developer.dji.com/doc/mobile-sdk-tutorial/en/`
+documenta V5; las instrucciones compartidas obligan a contrastar APIs y capacidades
+con V4 para el Mini 2. D-002 ampliada; no cambia el SDK elegido ni las tareas pendientes.
 
 El objetivo es ejecutar visión por computador con **Google MediaPipe en el móvil**
 y convertir resultados en órdenes DJI para el Mini 2 mediante el mando. El
@@ -22,6 +27,10 @@ El [informe de entorno](ENTORNO_ANDROID.md) conserva la auditoría Android inici
 y añade la de MediaPipe. No se instaló software ni se modificaron variables globales.
 
 ## Comprobaciones realizadas
+
+- Último cambio documental: portal DJI y contenido de su módulo público leídos;
+  confirmadas notas MSDK 5.18.0. Revisión de enlaces locales y diff; no requiere
+  repetir diagnóstico de PC ni ejecutar pruebas Android.
 
 - Diagnóstico PowerShell 5.1: salida 0; Java/Javac 17.0.19, SDK Manager 20.0,
   ADB 36.0.2, herramientas Android y WHPX disponibles.

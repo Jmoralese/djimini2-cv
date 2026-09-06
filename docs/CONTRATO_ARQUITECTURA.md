@@ -16,6 +16,24 @@
   y dependencias cuando se cree y compruebe el primer proyecto. La instalación
   más reciente del PC no demuestra compatibilidad del SDK DJI.
 
+## Guía de referencia DJI
+
+Consultar la documentación oficial antes de implementar o modificar integración
+DJI. Referencias verificadas el 2026-09-06:
+
+| Referencia | Uso en este proyecto |
+| --- | --- |
+| [Mobile SDK Tutorial, indicado por el propietario](https://developer.dji.com/doc/mobile-sdk-tutorial/en/) | Guía oficial de consulta; actualmente documenta MSDK V5 |
+| [Guía de desarrollo V4](https://developer.dji.com/mobile-sdk/documentation/introduction/index.html) | Integración y flujo de desarrollo aplicables a la línea del Mini 2 |
+| [SDK y ejemplos oficiales Android V4](https://github.com/dji-sdk/Mobile-SDK-Android) | Contrastar versión, dependencias e implementación de APIs V4 |
+
+El portal aportado presenta notas de MSDK 5.18.0 y tutoriales V5. No copiar sus
+dependencias, clases o capacidades a V4 por analogía. Para implementar prevalecen
+las referencias de la versión y modelo usados; consultar también las APIs V4
+enlazadas en los contratos de [dron](CONTRATO_DRON.md) y [visión](CONTRATO_VISION.md).
+Si una función solo está documentada en V5, verificar su equivalente y soporte
+V4/Mini 2 o dejarla como no confirmada. El enlace no cambia la decisión D-002.
+
 ## Límites del código
 
 ```text
