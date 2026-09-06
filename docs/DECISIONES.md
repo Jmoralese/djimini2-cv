@@ -33,11 +33,10 @@ en el informe de entorno.
 
 **Revisión:** si DJI cambia el soporte del modelo o si el ensayo real revela un bloqueo.
 
-**Referencia aportada por el propietario (2026-09-06):** incorporar la
-[guía oficial Mobile SDK Tutorial](https://developer.dji.com/doc/mobile-sdk-tutorial/en/)
-como consulta del desarrollo. Se verificó que el portal documenta V5. Se conserva
-V4 para Mini 2 y se contrastan las instrucciones del portal con fuentes V4,
-conforme al contrato de arquitectura; no se ha solicitado una migración de SDK.
+**Referencia confirmada por el propietario (2026-09-06):** el
+[portal oficial DJI Mobile SDK V4](https://developer.dji.com/mobile-sdk-v4/)
+es la referencia principal del desarrollo, junto con la guía y las APIs Android
+V4 del contrato de arquitectura. Verificar siempre el soporte específico del Mini 2.
 
 ## D-003 · Simulación independiente del SDK · 2026-09-06
 

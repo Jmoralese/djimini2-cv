@@ -1,16 +1,16 @@
 # Estado para el próximo agente
 
 - Fecha: 2026-09-06.
-- Último cambio: guía de referencia DJI incorporada por Codex. Relevo libre.
+- Último cambio: referencia principal corregida al portal DJI V4 por Codex. Relevo libre.
 - Rama: `main`, sin remoto.
 - Fase: documentación y herramientas; todavía no hay aplicación Android.
 
 ## Resultado
 
-La guía oficial indicada por el propietario está en README, AGENTS y los contratos
-de arquitectura/dron. El portal `https://developer.dji.com/doc/mobile-sdk-tutorial/en/`
-documenta V5; las instrucciones compartidas obligan a contrastar APIs y capacidades
-con V4 para el Mini 2. D-002 ampliada; no cambia el SDK elegido ni las tareas pendientes.
+La referencia principal indicada por el propietario es el
+[portal DJI Mobile SDK V4](https://developer.dji.com/mobile-sdk-v4/). README, AGENTS,
+contratos de arquitectura/dron y D-002 están actualizados. Se conservan los
+enlaces a guías/API Android V4 y la comprobación de capacidades por modelo.
 
 El objetivo es ejecutar visión por computador con **Google MediaPipe en el móvil**
 y convertir resultados en órdenes DJI para el Mini 2 mediante el mando. El
@@ -28,9 +28,9 @@ y añade la de MediaPipe. No se instaló software ni se modificaron variables gl
 
 ## Comprobaciones realizadas
 
-- Último cambio documental: portal DJI y contenido de su módulo público leídos;
-  confirmadas notas MSDK 5.18.0. Revisión de enlaces locales y diff; no requiere
-  repetir diagnóstico de PC ni ejecutar pruebas Android.
+- Último cambio documental: portal oficial V4 abierto y verificado; referencia
+  anterior sustituida, enlaces locales y diff revisados. No requiere repetir
+  diagnóstico de PC ni ejecutar pruebas Android.
 
 - Diagnóstico PowerShell 5.1: salida 0; Java/Javac 17.0.19, SDK Manager 20.0,
   ADB 36.0.2, herramientas Android y WHPX disponibles.

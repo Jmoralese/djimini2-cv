@@ -51,11 +51,10 @@ Gradle ni Kotlin globalmente: el futuro proyecto fijará sus versiones.
 
 ## Guía de referencia DJI
 
-La [documentación oficial Mobile SDK indicada por el propietario](https://developer.dji.com/doc/mobile-sdk-tutorial/en/)
-forma parte de las referencias del desarrollo. El portal corresponde a **V5**;
-para el **Mini 2 con V4** se contrastarán sus conceptos con la guía, las APIs y los
-ejemplos V4. El [contrato de arquitectura](docs/CONTRATO_ARQUITECTURA.md) fija este
-criterio para Codex y Claude.
+La referencia principal es el [portal oficial DJI Mobile SDK V4](https://developer.dji.com/mobile-sdk-v4/),
+indicado por el propietario para su Mini 2. El
+[contrato de arquitectura](docs/CONTRATO_ARQUITECTURA.md) enlaza también la guía
+de desarrollo y los ejemplos Android V4 que consultarán Codex y Claude.
 
 ## Git
 

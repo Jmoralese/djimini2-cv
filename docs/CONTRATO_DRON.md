@@ -3,11 +3,11 @@
 Estas reglas forman parte de la calidad de una app que actúa sobre hardware real.
 No sustituyen la validación del propietario ni atribuyen capacidades al Mini 2.
 
-La [guía oficial Mobile SDK aportada por el propietario](https://developer.dji.com/doc/mobile-sdk-tutorial/en/)
-es referencia de consulta del desarrollo. Su contenido corresponde a V5; para
+El [portal oficial DJI Mobile SDK V4](https://developer.dji.com/mobile-sdk-v4/)
+aportado por el propietario es la referencia principal del desarrollo. Para
 conexión, vídeo y órdenes del Mini 2 se verifican las APIs y restricciones V4
-según el [contrato de arquitectura](CONTRATO_ARQUITECTURA.md). Un ejemplo de esa
-guía no demuestra por sí solo compatibilidad con este dron.
+según el [contrato de arquitectura](CONTRATO_ARQUITECTURA.md). Las funciones
+generales del SDK no implican soporte en todos los modelos.
 
 ## Conexión y capacidades
 
