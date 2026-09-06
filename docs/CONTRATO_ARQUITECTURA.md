@@ -4,7 +4,8 @@
 
 - Android nativo, Kotlin y Android Studio. Jetpack Compose es la opción inicial
   para UI nueva; una vista Android tradicional puede integrar vídeo del SDK.
-- DJI Mobile SDK V4, referencia inicial 4.18. No sustituirlo por V5 por ser más nuevo.
+- DJI Mobile SDK V4 **4.18**, fijado en `gradle/libs.versions.toml`. No sustituirlo
+  por V5 por ser más nuevo; integración en la app pendiente.
 - Google MediaPipe Tasks Vision, dependencia `com.google.mediapipe:tasks-vision`
   con versión exacta validada al integrar. Biblioteca precompilada y modelos en
   la app; acceso desde Kotlin a sus APIs Android. No se requiere un runtime aparte.
@@ -86,6 +87,9 @@ Los nombres son orientativos; los límites son el contrato:
 
 - Versiones exactas en un único lugar, preferiblemente catálogo Gradle; sin `+`
   ni actualizaciones masivas mezcladas con funcionalidad.
+- Para DJI usar el catálogo existente y Maven Central. `dji-sdk` se incorpora
+  al runtime de la variante real y `dji-sdk-provided` solo a compilación. No
+  importar el repo de ejemplos completo. Ver [INTEGRACION_DJI.md](INTEGRACION_DJI.md).
 - Versionar el wrapper completo y su checksum de distribución. Registrar la
   combinación de herramientas que realmente compila.
 - Evitar frameworks de inyección al empezar: composición explícita suficiente.

@@ -46,6 +46,7 @@ Gradle ni Kotlin globalmente: el futuro proyecto fijará sus versiones.
 | [Calidad](docs/CONTRATO_CALIDAD.md) | Qué significa terminado y cómo comprobarlo |
 | [Dron](docs/CONTRATO_DRON.md) | Reglas de conexión, comandos y pruebas con hardware |
 | [Visión](docs/CONTRATO_VISION.md) | Frames DJI, MediaPipe, modelos y paso de observaciones a órdenes |
+| [Integración DJI](docs/INTEGRACION_DJI.md) | Dependencias Maven, catálogo y qué incorporar al proyecto |
 | [Colaboración](docs/COLABORACION.md) | Alternancia entre IAs y trabajo simultáneo |
 | [Decisiones](docs/DECISIONES.md) | Decisiones importantes, motivo y condiciones de revisión |
 
@@ -55,6 +56,11 @@ La referencia principal es el [portal oficial DJI Mobile SDK V4](https://develop
 indicado por el propietario para su Mini 2. El
 [contrato de arquitectura](docs/CONTRATO_ARQUITECTURA.md) enlaza también la guía
 de desarrollo y los ejemplos Android V4 que consultarán Codex y Claude.
+
+El SDK se obtiene mediante Gradle desde Maven Central. No hay que copiar el
+repositorio completo de DJI. [libs.versions.toml](gradle/libs.versions.toml) fija
+las dos dependencias V4.18 y su descarga ya se comprobó con Gradle. El módulo
+Android que las consumirá sigue pendiente. [Detalle de integración](docs/INTEGRACION_DJI.md).
 
 ## Git
 
@@ -71,4 +77,5 @@ control de vuelo. [Fuente oficial DJI](https://github.com/dji-sdk/Mobile-SDK-And
 
 El PC tiene las herramientas Android básicas. La auditoría específica de MediaPipe
 y lo que falta para ejecutarlo figuran en [ENTORNO_ANDROID.md](docs/ENTORNO_ANDROID.md).
-No hay todavía dependencia Gradle, modelo ni APK de este proyecto.
+Hay un catálogo de dependencias DJI preparado; todavía no hay módulo Android que
+lo consuma, modelo MediaPipe ni APK de este proyecto.

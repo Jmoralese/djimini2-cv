@@ -35,6 +35,10 @@ Las instrucciones explícitas del usuario prevalecen sobre estas normas del proy
   propietario y las guías/API V4 del contrato de arquitectura. Confirma el soporte
   específico del Mini 2 antes de usar una capacidad anunciada para la familia SDK.
 - Mantén DJI detrás de un adaptador y permite probar con un dron simulado.
+- Obtén DJI de Maven Central usando `gradle/libs.versions.toml`; no copies todo
+  el repo de ejemplos ni lo añadas como submódulo. Sigue
+  [INTEGRACION_DJI.md](docs/INTEGRACION_DJI.md): runtime y `compileOnly` separados,
+  solo en la variante real. El catálogo preparado no equivale a una app integrada.
 - MediaPipe sustituye a OpenCV por decisión explícita del propietario. Usa
   MediaPipe Tasks Vision precompilado desde Kotlin; no añadas OpenCV como
   dependencia directa ni instales un runtime separado en el móvil.

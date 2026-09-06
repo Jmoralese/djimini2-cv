@@ -1,0 +1,8 @@
+# Catalogo preparado para el futuro proyecto Android.
+# Su existencia no implica que el SDK este integrado o que haya una app compilable.
+[versions]
+dji = "4.18"
+
+[libraries]
+dji-runtime = { module = "com.dji:dji-sdk", version.ref = "dji" }
+dji-provided = { module = "com.dji:dji-sdk-provided", version.ref = "dji" }

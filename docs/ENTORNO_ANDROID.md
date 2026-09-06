@@ -121,7 +121,10 @@ se mantendrán en configuración local ignorada por Git.
 
 La página de notas DJI carga el contenido dinámicamente. Se verificó también la
 [API pública que usa esa página](https://dev.dji.com/api/v1/documents/detail?content_uid=122b5969-d64d-4752-8452-400c41240aa5).
-No se ha descargado ni integrado aún el artefacto SDK en este repositorio.
+En la auditoría posterior del repositorio DJI se descargaron SDK 4.18, `provided`
+y dependencias transitivas mediante Gradle/Maven Central. Quedan en la caché local,
+fuera de Git. La resolución del catálogo pasó; el SDK aún no está integrado en
+una app ni se ha ejecutado en Android. Ver [INTEGRACION_DJI.md](INTEGRACION_DJI.md).
 
 ## MediaPipe: preparación comprobada y pendientes
 

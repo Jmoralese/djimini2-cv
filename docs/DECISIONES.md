@@ -15,8 +15,8 @@ personal. La separación en paquetes y un adaptador DJI basta inicialmente.
 
 ## D-002 · Línea DJI Mobile SDK V4 · 2026-09-06
 
-**Decisión:** usar V4 para el Mini 2 original. Referencia de integración: 4.18,
-pendiente de probar en el teléfono y fijar dependencias en el proyecto.
+**Decisión:** usar V4 para el Mini 2 original. Versión 4.18 fijada en el catálogo
+del proyecto; integración Android y prueba en el teléfono pendientes.
 
 **Evidencia:** [repositorio oficial V4](https://github.com/dji-sdk/Mobile-SDK-Android).
 Verificación específica del modelo: las [notas oficiales Android SDK 4.18](https://developer.dji.com/document/122b5969-d64d-4752-8452-400c41240aa5)
@@ -86,3 +86,18 @@ cada orden; no autoriza vuelos mediante herramientas de desarrollo.
 **Revisión:** tras la primera prueba de modelo + vídeo DJI en el móvil se fijarán
 presupuestos de latencia, límites y CPU/GPU. C++ propio o grafos personalizados
 se incorporan únicamente si una necesidad justifica herramientas adicionales.
+
+## D-006 · SDK DJI mediante Maven Central · 2026-09-06
+
+**Decisión:** consumir los artefactos oficiales V4.18 mediante Gradle, con aliases
+en `gradle/libs.versions.toml`. No copiar el repo DJI ni añadir un submódulo; usar
+sus ejemplos como referencia. Runtime solo en la variante real y `provided` como
+`compileOnly`, siguiendo [INTEGRACION_DJI.md](INTEGRACION_DJI.md).
+
+**Evidencia:** la propia muestra oficial declara dependencias Maven. El catálogo
+se probó con Gradle: se descargaron los artefactos y transitivos correctamente.
+Eso valida distribución/resolución, no compilación Android ni funcionamiento DJI.
+
+**Revisión:** si cambia la disponibilidad de Maven o se justifica adaptar un
+fragmento de la muestra; conservar entonces su origen/licencia. La próxima base
+Android debe consumir este catálogo y probar el empaquetado de la variante real.

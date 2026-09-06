@@ -1,11 +1,17 @@
 # Estado para el próximo agente
 
 - Fecha: 2026-09-06.
-- Último cambio: soporte explícito de Mini 2 en Android SDK V4.18 verificado por Codex. Relevo libre.
+- Último cambio: T-012, distribución y catálogo DJI V4.18 preparados por Codex. Relevo libre.
 - Rama: `main`, sin remoto.
 - Fase: documentación y herramientas; todavía no hay aplicación Android.
 
 ## Resultado
+
+SDK DJI mediante Maven Central: se añadió `gradle/libs.versions.toml` con runtime
+y `provided` V4.18, y [INTEGRACION_DJI.md](INTEGRACION_DJI.md) con scopes, variantes
+y pasos pendientes. No se copió ni añadió como submódulo el repositorio de ejemplos.
+La descarga con Gradle se verificó; todavía no hay módulo Android que consuma el
+catálogo ni APK. D-006 registra esta decisión para ambas IAs.
 
 La referencia principal indicada por el propietario es el
 [portal DJI Mobile SDK V4](https://developer.dji.com/mobile-sdk-v4/). README, AGENTS,
@@ -30,6 +36,13 @@ El [informe de entorno](ENTORNO_ANDROID.md) conserva la auditoría Android inici
 y añade la de MediaPipe. No se instaló software ni se modificaron variables globales.
 
 ## Comprobaciones realizadas
+
+- T-012: README/build/licencia del repo DJI revisados, referencia upstream
+  `37afa622a1e95f179e2d5431f0afe4203ee5ca88`. Gradle 9.2.1 + JDK 17.0.19 importaron
+  el catálogo y resolvieron 14 artefactos desde Maven Central: BUILD SUCCESSFUL,
+  salida 0. Se conservó fly-safe y excluyó anti-distortion como en la muestra.
+  SDK y transitivos quedan en caché Gradle; build/log temporales en
+  `.local/dji-dependency-check/`. Esto no prueba compilación ni ejecución Android.
 
 - Última verificación: tabla oficial DJI y notas Android SDK 4.18 (contenido de
   la API pública de documentación) leídas; Mini 2 figura como producto soportado.
