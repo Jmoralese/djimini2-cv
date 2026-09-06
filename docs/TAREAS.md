@@ -36,6 +36,11 @@ criterios y verificación) está en [PLAN_APP.md](PLAN_APP.md): un prompt
 | T-026 | Pendiente | Selección de objetivo y tracking en UI (sin órdenes); ficha en PLAN_APP.md |
 | T-027 | Pendiente | Sesión de control y emisor Virtual Stick; ficha en PLAN_APP.md |
 | T-028 | Futuro | Rutinas automáticas propias tipo QuickShot; ficha en PLAN_APP.md |
+| T-029 | Pendiente | Planificador de misiones por puntos GPS en el mapa (sin ejecución); ficha en PLAN_APP.md |
+| T-030 | Pendiente | Ejecución de misión guiada desde el móvil vía Virtual Stick; ficha en PLAN_APP.md |
+| T-031 | Pendiente | Asistencia visual frente a obstáculos, experimental (avisar/frenar, sin esquiva); ficha en PLAN_APP.md |
+| T-032 | Pendiente | Reconocer un objeto concreto por re-identificación («busca mi perro/coche»); ficha en PLAN_APP.md |
+| T-033 | Pendiente | Búsqueda con patrón de barrido sobre misión guiada; ficha en PLAN_APP.md |
 
 ## Próximo paso
 

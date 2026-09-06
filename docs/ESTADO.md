@@ -2,12 +2,15 @@
 
 - Fecha: 2026-09-06.
 - Último cambio: plan completo de la app en [PLAN_APP.md](PLAN_APP.md) (fichas
-  T-013…T-028 ejecutables con «haz la tarea T-0XX»), creado por Claude a
+  T-013…T-033 ejecutables con «haz la tarea T-0XX»), creado por Claude a
   petición del propietario tras completar T-003. Relevo libre.
-- Reparto acordado: el propietario aportará las rutinas de visión por
-  computador; las tareas del plan preparan la app completa tipo DJI Fly y las
-  costuras de visión/control. QuickShots/ActiveTrack/panorámica no los expone
-  el MSDK para Mini 2: el seguimiento será propio (T-026/T-027/T-006).
+- Motivo confirmado de la app (contrato de producto ampliado): seguimiento
+  visual, misiones por puntos GPS guiadas desde el móvil (el Mini 2 no tiene
+  waypoints a bordo; precedente Litchi vía Virtual Stick, exige enlace
+  continuo), asistencia visual frente a obstáculos (avisar/frenar, nunca
+  esquiva garantizada) y búsqueda de objetos concretos por re-identificación
+  (fase 7 del plan). QuickShots/ActiveTrack/panorámica no los expone el MSDK
+  para Mini 2: el seguimiento será propio (T-026/T-027/T-006).
 - Rama: `main`, remoto `origin`: <https://github.com/Jmoralese/djimini2-cv>.
   Publicar cambios solo si el propietario lo pide.
 - Fase: primera app Android funcional en simulación; integración DJI compilada

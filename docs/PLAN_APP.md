@@ -54,6 +54,22 @@ panorama ([dronedj](https://dronedj.com/2022/01/03/dji-sdk-mini-2-se-air-2s/),
 Stick en Mini 2 confirmado en el [contrato del dron](CONTRATO_DRON.md). Las
 capacidades se re-verifican por modelo al implementar cada tarea.
 
+## Más allá de DJI Fly: el motivo de esta app
+
+Objetivos del propietario que DJI Fly no ofrece en Mini 2 y que esta app añade
+con visión en el móvil + Virtual Stick:
+
+| Función objetivo | Viabilidad en Mini 2 | Tareas |
+| --- | --- | --- |
+| Seguimiento de un objetivo (persona, bici…) | Viable: visión propia + Virtual Stick | T-026, T-027, T-006 |
+| Planificar un vuelo por puntos GPS y ejecutarlo | Viable como **misión guiada desde el móvil**: el SDK no ofrece waypoints a bordo para Mini 2, pero sí telemetría GPS + Virtual Stick. Precedente: Litchi lo hace así en Mini 2. Límites heredados: exige enlace continuo mando-dron (la misión no continúa fuera de cobertura) y el yaw puede ser poco suave (límite conocido del SDK) | T-029, T-030 |
+| Aviso/reacción ante obstáculos (el Mini 2 no trae sensores) | **Parcial y experimental**: con una sola cámara se puede detectar y frenar/avisar, no garantizar esquiva. Se presenta siempre como asistencia, nunca como navegación segura (contrato de producto) | T-031 |
+| «Busca mi perro / busca mi coche» (objeto concreto) | Viable: detector por categoría + re-identificación con embeddings (MediaPipe Image Embedder) sobre fotos de referencia del usuario; búsqueda con patrón de barrido sobre la misión guiada | T-032, T-033 |
+
+Fuentes del precedente de waypoints: [soporte de waypoints por modelo en
+drones DJI Fly](https://www.litchiutilities.com/docs/waypoint.php) (Mini 2 va
+por Virtual Stick), [hilo DJI Forum sobre Litchi+Mini 2](https://forum.dji.com/thread-258531-1-1.html).
+
 ## Mapa de pantallas
 
 ```text
@@ -82,6 +98,7 @@ FASE 3 cámara:     T-017 -> T-018, T-019, T-020
 FASE 4 mapa:       T-021 -> T-022, T-023     (T-021 no requiere dron)
 FASE 5 ajustes:    T-024, T-025
 FASE 6 visión:     T-009 -> T-010 -> (T-005) -> T-011 -> T-026 -> T-027 -> T-006 -> T-028
+FASE 7 misiones:   T-029 -> T-030;  T-031 (tras T-011+T-027);  T-032 -> T-033 (tras T-030+T-032)
 ```
 
 Las fases 1, 4 (parcial), 5 (parcial) y 6 (hasta T-010) avanzan sin hardware.
@@ -316,6 +333,99 @@ intercalar. Las fichas de T-002/004/005/006/009/010/011 están en
   independiente del FPS de visión (contrato de calidad los exige).
 - **Verificación:** puerta de calidad + tests; banco: activar/desactivar modo
   Virtual Stick sin motores y registrar el comportamiento del mando.
+
+### T-029 · Planificador de misiones por puntos GPS (solo planificación)
+
+- **Depende de:** T-021 (mapa). **Hardware:** no.
+- **Alcance:** editor de misiones sobre el mapa: añadir/mover/borrar puntos con
+  altura y velocidad por punto, acciones simples (foto, pausa, mirar a un POI),
+  ruta dibujada con distancia/duración estimadas. Validación al editar: límites
+  de altura/distancia configurados (T-024), aviso si la ruta cruza zonas de
+  T-022/T-023 (aviso, no bloqueo: la responsabilidad es del piloto). Guardado
+  local de misiones con nombre (Room o DataStore); exportación GeoJSON opcional.
+  **Sin ejecución**: esta tarea no envía nada al dron.
+- **Aceptación:** crear, editar, guardar y recargar misiones en la variante sim;
+  validaciones y avisos visibles; tests JVM de la validación de rutas y de la
+  estimación de distancia/duración; fixtures con coordenadas ficticias (nunca
+  ubicaciones reales del propietario en Git).
+- **Verificación:** puerta de calidad + tests; recorrido en emulador con capturas.
+
+### T-030 · Ejecución de misión guiada desde el móvil
+
+- **Depende de:** T-027 (sesión/emisor), T-029, T-016 (RTH). **Hardware:**
+  vuelo con propietario (por fases; primero todo en sim).
+- **Alcance:** guiado por Virtual Stick hacia cada punto usando telemetría GPS
+  del dron: control de rumbo/velocidad con corrección continua, llegada por
+  radio de tolerancia, ejecución de acciones por punto, y controles pausar
+  (hover) / reanudar / abortar (hover o RTH validado, a elección explícita).
+  Reutiliza íntegra la sesión de T-027: parada visible, revocación por pérdida
+  de vídeo/enlace/datos, sin reanudación automática tras reconectar. Límites
+  documentados en UI antes de lanzar: requiere enlace continuo (si se pierde,
+  manda el failsafe del mando/dron, no la app), precisión GPS de metros, yaw
+  poco suave. El simulador incorpora una física simple (posición/velocidad) para
+  ejecutar misiones completas sin dron.
+- **Aceptación:** en sim, una misión de varios puntos se recorre con pausa,
+  reanudación y aborto correctos; tests JVM del guiado (convergencia al punto,
+  tolerancia, timeout por no-avance, aborto limpio, datos caducados detienen la
+  emisión); ninguna misión arranca sin activación deliberada con resumen visible.
+- **Verificación:** puerta de calidad + tests; ensayo real escalonado del
+  [contrato del dron](CONTRATO_DRON.md): banco (modos sin motores) -> vuelo
+  corto de 2-3 puntos a la vista, con guion entregado al propietario.
+
+### T-031 · Asistencia visual frente a obstáculos (experimental)
+
+- **Depende de:** T-011 (análisis) y T-027 (para reaccionar). **Hardware:**
+  móvil con clips; validación final en vuelo.
+- **Alcance:** el Mini 2 no tiene sensores de obstáculos; con una sola cámara
+  **no se puede garantizar esquiva** y esta tarea no lo promete (contrato de
+  producto). Se implementa una asistencia: detección de obstáculo probable en
+  la trayectoria (detección de objetos + crecimiento de caja/expansión, y/o
+  flujo óptico) que (a) muestra aviso siempre, y (b) durante rutinas propias
+  (T-006/T-030/T-033) dispara la reacción validada: frenar a hover y pausar la
+  rutina. Nunca maniobra de esquiva autónoma. Umbrales configurables en Ajustes
+  (sección Visión); métrica de falsos positivos/negativos registrada con clips.
+- **Aceptación:** con clips de acercamiento conocidos, el aviso salta dentro de
+  la ventana definida y la tasa de falsos positivos queda medida y anotada; en
+  sim, una misión se pausa ante un obstáculo inyectado; tests JVM de la política
+  de reacción (histéresis, prioridad sobre otras órdenes, datos caducados).
+- **Verificación:** puerta de calidad + tests + informe de métricas en ESTADO;
+  ensayo real solo tras validar T-030 y con obstáculos controlados.
+
+### T-032 · Reconocimiento de un objeto concreto (re-identificación)
+
+- **Depende de:** T-010/T-011 (MediaPipe operativo). **Hardware:** móvil.
+- **Alcance:** «busca mi perro / mi coche»: el usuario registra el objetivo con
+  2-5 fotos de referencia; pipeline detector por categoría (perro, coche,
+  persona… etiquetas COCO del Object Detector) + **MediaPipe Image Embedder**
+  para comparar cada candidato con la firma de referencia por similitud coseno.
+  Estados candidato/confirmado con umbrales e histéresis; galería local de
+  objetivos guardados (fotos solo en el dispositivo). Al confirmar: alerta y
+  opción de fijarlo como objetivo de T-026 (y de ahí seguimiento T-006).
+  Registrar modelos usados (detector + embedder) con origen/hash/licencia según
+  el [contrato de visión](CONTRATO_VISION.md).
+- **Aceptación:** en Android (variante sim) con assets: distingue el objeto de
+  referencia frente a distractores de la misma categoría con métricas anotadas;
+  tests JVM de la lógica de decisión con similitudes falsas; latencia por frame
+  medida en el móvil.
+- **Verificación:** puerta de calidad + tests + métricas en ESTADO; prueba
+  manual con el objeto real del propietario grabado en vídeo.
+
+### T-033 · Búsqueda con patrón de barrido
+
+- **Depende de:** T-030 y T-032 (T-031 recomendable activa). **Hardware:** vuelo.
+- **Alcance:** definir un área en el mapa y generar automáticamente una misión
+  de barrido (idas y venidas con solape según altura/FOV) que se ejecuta con
+  T-030 mientras corre el reconocimiento de T-032. Al confirmar un hallazgo:
+  pausa en hover, marca en el mapa la posición estimada (desde telemetría +
+  gimbal, con su incertidumbre visible), aviso sonoro/visual y opciones:
+  continuar barrido, fijar y seguir (T-006) o RTH. Todo dentro de una sesión
+  con los mismos límites/paradas de T-027.
+- **Aceptación:** en sim completa: barrido generado correcto para áreas de
+  prueba (tests JVM del generador de patrón), detección inyectada pausa y marca
+  en el mapa; la incertidumbre de posición se muestra, no se presenta como
+  exacta.
+- **Verificación:** puerta de calidad + tests; ensayo real escalonado con el
+  propietario en área abierta y objetivo colocado a propósito.
 
 ### T-028 · Rutinas automáticas propias (tipo QuickShot) — futuro
 

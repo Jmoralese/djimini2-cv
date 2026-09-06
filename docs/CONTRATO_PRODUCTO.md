@@ -47,13 +47,23 @@ documenta esa limitación antes de ampliar funcionalidades dependientes.
 - La visión puede funcionar y probarse sin mover el dron. Cada rutina define qué
   detecta, con qué modelo y qué acciones puede producir, antes de habilitar control.
 
+## Objetivos ampliados confirmados por el propietario (2026-09-06)
+
+La razón de esta app son funciones que DJI Fly no da al Mini 2, planificadas en
+[PLAN_APP.md](PLAN_APP.md): seguimiento visual de un objetivo, misiones por
+puntos GPS **guiadas desde el móvil** (el Mini 2 no ejecuta waypoints a bordo;
+requieren enlace continuo), asistencia visual frente a obstáculos y búsqueda de
+un objeto concreto (re-identificación sobre fotos de referencia) con patrón de
+barrido. Cada una se entrega como rutina acotada con sesión, límites y parada
+según los contratos de visión y dron.
+
 ## Fuera del alcance inicial
 
-Navegación autónoma general, rutas/waypoints a bordo, múltiples drones, nube,
-entrenamiento de modelos y modificaciones de firmware. Una rutina concreta de
-seguimiento visual puede proponerse como tarea; no se presume ya implementada ni
-se excluye del objetivo de control desde el móvil. No se atribuye evitación de
-obstáculos o navegación segura a una detección visual.
+Navegación autónoma sin enlace o a bordo del dron, múltiples drones, nube,
+entrenamiento de modelos y modificaciones de firmware. La asistencia frente a
+obstáculos avisa y detiene rutinas propias: **no se atribuye evitación de
+obstáculos garantizada ni navegación segura a una detección visual** con una
+sola cámara; el piloto sigue siendo responsable.
 
 ## Cambios de alcance
 
