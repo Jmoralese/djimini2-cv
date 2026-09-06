@@ -1,6 +1,7 @@
 # Instrucciones compartidas: Codex y Claude
 
-Proyecto personal para controlar un **DJI Mini 2 original** desde Android nativo.
+Proyecto personal Android nativo de **visión por computador en el móvil con
+Google MediaPipe**, para controlar un **DJI Mini 2 original** a través de su mando.
 Comunícate y documenta en español; usa inglés para identificadores de código.
 Las instrucciones explícitas del usuario prevalecen sobre estas normas del proyecto.
 
@@ -10,7 +11,8 @@ Las instrucciones explícitas del usuario prevalecen sobre estas normas del proy
 2. Ejecuta `git status --short --branch` y `git log -5 --oneline` (si hay commits).
 3. Lee los contratos afectados antes de editar: [producto](docs/CONTRATO_PRODUCTO.md),
    [arquitectura](docs/CONTRATO_ARQUITECTURA.md), [calidad](docs/CONTRATO_CALIDAD.md)
-   y, para cualquier integración DJI, [operación del dron](docs/CONTRATO_DRON.md).
+   [visión en el móvil](docs/CONTRATO_VISION.md) y, para cualquier integración DJI,
+   [operación del dron](docs/CONTRATO_DRON.md).
 4. Comprueba la [decisión técnica vigente](docs/DECISIONES.md) y el
    [protocolo de colaboración](docs/COLABORACION.md). No reconstruyas decisiones de memoria.
 5. Elige una tarea concreta y sus criterios de aceptación. Para cambios pequeños basta
@@ -29,6 +31,15 @@ Las instrucciones explícitas del usuario prevalecen sobre estas normas del proy
 - DJI MSDK V4 es la línea para Mini 2. Verifica las APIs en fuentes oficiales:
   no copies APIs V5 ni asumas capacidades de otros drones.
 - Mantén DJI detrás de un adaptador y permite probar con un dron simulado.
+- MediaPipe sustituye a OpenCV por decisión explícita del propietario. Usa
+  MediaPipe Tasks Vision precompilado desde Kotlin; no añadas OpenCV como
+  dependencia directa ni instales un runtime separado en el móvil.
+- Empaqueta la biblioteca y el modelo compatible con la app. El análisis se
+  ejecuta en el teléfono; las observaciones pasan por una política de control
+  antes de convertirse en órdenes DJI. MediaPipe no llama directamente al dron.
+- La rutina visual comienza desactivada. El usuario puede activar una sesión
+  acotada que genere órdenes automáticamente; no necesita confirmar cada frame.
+  Una reconexión no reactiva esa sesión. Sigue el contrato de visión y del dron.
 - Nunca ordenes despegue, armado, movimiento, aterrizaje o RTH a hardware como
   parte de una comprobación automática de desarrollo.
 - No guardes claves, credenciales de firma, coordenadas reales ni vuelos privados

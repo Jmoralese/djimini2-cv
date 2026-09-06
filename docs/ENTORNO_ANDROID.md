@@ -14,6 +14,13 @@ La preparación del PC no confirma aún que una app DJI funcione: no existe app
 para compilar y no hay teléfono/mando/dron conectado. La primera base deberá
 fijar y probar Gradle/AGP/Kotlin/SDK; la integración DJI requiere ensayo real.
 
+**Ampliación MediaPipe (misma fecha):** las herramientas básicas también permiten
+empezar con MediaPipe Tasks precompilado desde Kotlin. Google Maven es accesible
+y se han descargado/inspeccionado sus paquetes Android. No se necesita instalar
+MediaPipe como programa en el PC o como otra app en el teléfono. Falta integrar
+la dependencia y un modelo en el APK y verificar ejecución real; no se ha hecho
+una compilación ni una inferencia MediaPipe en esta auditoría.
+
 ## Inventario observado
 
 | Componente | Resultado | Lectura práctica |
@@ -38,6 +45,10 @@ fijar y probar Gradle/AGP/Kotlin/SDK; la integración DJI requiere ensayo real.
 | Licencias SDK | Registro local presente | No se aceptaron términos nuevos; otros paquetes pueden pedirlos |
 | Dispositivo físico | Ninguno detectado por ADB | Depuración USB/Wi-Fi real pendiente |
 | Agentes | Codex disponible; `claude` no encontrado en PATH | Instrucciones Claude preparadas; su cliente/sesión no verificado |
+| Android Gradle Plugin en caché | 9.0.1 | Disponible; aún no elegido ni probado para esta app |
+| Kotlin Gradle Plugin en caché | 2.2.10 y 2.2.21 | Disponible; la matriz final sigue pendiente |
+| NDK / CMake en Android SDK | No instalados | No necesarios de partida para consumir MediaPipe Tasks precompilado; revisar si se añade C++ propio |
+| MediaPipe en caché Gradle | No encontrado al auditar | Los AAR se inspeccionaron en `.local/`, no se ha configurado dependencia de proyecto |
 
 WMI devolvió indicadores de virtualización ambiguos bajo un hipervisor activo.
 La prueba directa `emulator -accel-check` confirmó WHPX utilizable; no hay evidencia
@@ -107,6 +118,67 @@ se mantendrán en configuración local ignorada por Git.
 La página de notas DJI carga el contenido dinámicamente. Se verificó también la
 [API pública que usa esa página](https://dev.dji.com/api/v1/documents/detail?content_uid=122b5969-d64d-4752-8452-400c41240aa5).
 No se ha descargado ni integrado aún el artefacto SDK en este repositorio.
+
+## MediaPipe: preparación comprobada y pendientes
+
+### Ruta elegida
+
+**Google MediaPipe sustituye a OpenCV**, según confirmación del propietario.
+Usar `com.google.mediapipe:tasks-vision` desde Kotlin y empaquetar un modelo
+compatible en los assets de la app. El APK instala sus bibliotecas y modelo en
+el móvil; la inferencia visual se ejecuta allí. No se requiere Python/pip,
+OpenCV Manager, servidor propio ni instalar MediaPipe por separado.
+
+Google documenta Android SDK/API **24 o superior**, IDE Android y bibliotecas
+precompiladas. El móvil también debe cumplir ese mínimo y los de las demás
+dependencias. Algunas tareas pueden no funcionar en un emulador. CPU será la
+referencia; GPU y rendimiento sostenido se comprobarán en el teléfono.
+[Guía oficial de configuración](https://developers.google.com/edge/mediapipe/solutions/setup_android).
+
+### Paquetes inspeccionados
+
+Se consultó Google Maven por HTTPS desde este PC. La metadata anunció `1.0.0`
+y se descargaron POM y AAR de `tasks-vision:1.0.0` y su dependencia
+`tasks-core:1.0.0` a `.local/mediapipe-audit/`. Es una **versión candidata auditada**,
+no una dependencia ya fijada en el proyecto ni una combinación certificada con DJI.
+
+| Comprobación | Resultado |
+| --- | --- |
+| Acceso a Google Maven | Correcto, metadata/POM/AAR descargados |
+| Manifest de ambos AAR | `minSdkVersion=24`; no determina el targetSdk final de nuestra app |
+| API Tasks Vision | AAR precompilado, dependencia de Tasks Core de la misma versión |
+| Biblioteca nativa en Tasks Core | `libmediapipe_tasks_jni.so` para arm64-v8a, armeabi-v7a, x86 y x86_64 |
+| Modelos `.tflite`/`.task` en esos AAR | Ninguno; hay que seleccionar e incorporar el modelo de la rutina |
+| Compilación Gradle y dependencias transitivas | No probadas; no existe proyecto Android todavía |
+| Carga nativa / inferencia / GPU | No probadas |
+| Convivencia MediaPipe + DJI y páginas de 16 KB | Pendiente en APK y móvil reales |
+
+Evidencia de distribución: [metadata Tasks Vision](https://dl.google.com/dl/android/maven2/com/google/mediapipe/tasks-vision/maven-metadata.xml),
+[POM Tasks Vision 1.0.0](https://dl.google.com/dl/android/maven2/com/google/mediapipe/tasks-vision/1.0.0/tasks-vision-1.0.0.pom),
+[AAR Tasks Core 1.0.0](https://dl.google.com/dl/android/maven2/com/google/mediapipe/tasks-core/1.0.0/tasks-core-1.0.0.aar).
+
+No se compiló MediaPipe desde fuentes: las `.so` ya están en el paquete.
+Por esta vía no hace falta preparar NDK/CMake/Bazel ahora. Si se decide escribir
+C++/JNI, compilar grafos personalizados o modificar la biblioteca, habrá que
+auditar e instalar las herramientas específicas de esa alternativa.
+
+### Lo que falta
+
+1. Elegir la primera rutina visual y una tarea/modelo compatible, con sus entradas,
+   objetivo y métricas. Los modelos son específicos de cada tarea; no cualquier
+   `.tflite` sirve. [Requisitos de modelos, ejemplo de detección de objetos](https://developers.google.com/edge/mediapipe/solutions/vision/object_detector).
+2. Crear el proyecto Kotlin/Gradle y añadir repositorio `google()`, versión exacta
+   de `tasks-vision`, dependencias transitivas y assets del modelo. Fijar la matriz
+   de herramientas y compilar/instalar una variante sin DJI para probar inferencia.
+3. Confirmar móvil/Android/ABI/tamaño de página y conectar ADB. El SDK del PC es
+   suficiente para empezar; la potencia y compatibilidad del móvil son desconocidas.
+4. Probar la decodificación del vídeo DJI y su conversión a `MPImage`; luego ejecutar
+   visión sin movimientos y medir la latencia conjunta. Habilitar una rutina de
+   órdenes solo después de validar [visión](CONTRATO_VISION.md) y [control](CONTRATO_DRON.md).
+
+No hay una carencia de herramientas básicas que obligue a instalar software
+adicional ahora para la vía precompilada. **El entorno completo de ejecución aún
+no está validado**: faltan app, modelo, teléfono y prueba de integración.
 
 ## Lo que falta para la prueba real
 

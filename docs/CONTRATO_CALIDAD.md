@@ -21,11 +21,16 @@ Una prueba de emulador no certifica una integración DJI ni un vuelo seguro.
 | Lógica Kotlin | Compilación y pruebas unitarias de comportamiento nuevo o regresión |
 | UI Android | Compilación/lint y recorrido manual o instrumentado de estados afectados |
 | Adaptador DJI | Pruebas con doble para fallos y ciclo de vida; banco real para afirmar conexión/funcionamiento |
+| MediaPipe/modelo | Carga e inferencia reales en Android con imágenes/clips conocidos; formato/coordenadas correctos y comportamiento ante modelo ausente/inválido |
+| Política de control visual | Tests JVM con observaciones falsas: caducidad, confianza, objetivo perdido, otra sesión, ejes/límites y parada independiente de inferencia |
 | Comandos de vuelo | Casos de rechazo, timeout, desconexión, duplicado y prueba manual del protocolo del dron |
 
 No se exige porcentaje de cobertura, suite de capturas ni test por cada getter.
 Sí se prueban decisiones que pueden producir acciones erróneas: datos caducados,
 comandos repetidos, callbacks antiguos, pérdida de enlace y estado incierto.
+También vídeo congelado, resultados fuera de orden y rutina detenida que no debe
+reactivarse al reconectar. Las consignas continuas vigentes se distinguen de los
+duplicados de acciones discretas según el contrato del dron.
 
 ## Puerta de entrada del primer proyecto Android
 
@@ -37,6 +42,18 @@ Después añadir la verificación de compilación de la variante DJI. La aceptac
 del registro SDK y la conexión se verifican en el teléfono real y se documentan
 por separado. No bajar target SDK ni desactivar lint de forma general para ocultar
 incompatibilidades; cualquier excepción concreta necesita motivo y seguimiento.
+
+## Puerta de entrada de visión y control
+
+La variante sin DJI debe poder ejecutar MediaPipe real sobre assets de prueba.
+Fijar y registrar versión del AAR y modelo; comprobar ABI y carga de bibliotecas
+nativas en Android. Tests JVM con dobles no demuestran inferencia nativa.
+
+Antes de control real, comprobar en el móvil vídeo DJI + inferencia simultáneos,
+con resolución/FPS, latencia y variación, frames descartados, memoria/temperatura
+y frecuencia de control dentro de los límites definidos para la rutina. Validar
+parada y revocación de sesión aunque no lleguen callbacks de visión. Emulador,
+prueba en banco y vuelo mantienen evidencias separadas.
 
 ## Evidencia breve
 

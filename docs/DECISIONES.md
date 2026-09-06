@@ -54,3 +54,25 @@ proyectos. No se publica en GitHub hasta una petición posterior del propietario
 
 **Revisión:** al crear el wrapper se fijará la matriz de compilación; al publicar se
 añadirán remoto, licencia elegida y CI útil.
+
+## D-005 · MediaPipe en el móvil y control visual · 2026-09-06
+
+**Decisión:** el objetivo central es analizar vídeo del Mini 2 con Google MediaPipe
+en el teléfono y traducir observaciones a instrucciones DJI. El propietario ha
+confirmado que MediaPipe sustituye a OpenCV; no añadir este último como dependencia
+directa. No se requiere ejecutar nuestras rutinas en el dron ni en la nube.
+
+Usar MediaPipe Tasks Vision precompilado desde Kotlin y modelos compatibles
+incluidos en el APK. La instalación de nuestra app instala sus bibliotecas/modelos;
+no hay una app MediaPipe adicional. Elegir tarea/modelo y fijar versión después
+de comprobar la integración. [Guía oficial Android](https://developers.google.com/edge/mediapipe/solutions/setup_android).
+
+**Consecuencias:** un adaptador de frames alimenta visión; la política valida
+observaciones antes de enviar órdenes. Solo análisis por defecto. Una sesión de
+control activada por el usuario permite órdenes sucesivas acotadas, y se revoca
+ante pérdida de datos o parada. Esto sustituye el requisito de una pulsación por
+cada orden; no autoriza vuelos mediante herramientas de desarrollo.
+
+**Revisión:** tras la primera prueba de modelo + vídeo DJI en el móvil se fijarán
+presupuestos de latencia, límites y CPU/GPU. C++ propio o grafos personalizados
+se incorporan únicamente si una necesidad justifica herramientas adicionales.

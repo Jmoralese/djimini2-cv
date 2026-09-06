@@ -70,6 +70,11 @@ if ($sdkRoot -and (Test-Path -LiteralPath $sdkRoot -PathType Container)) {
     }
     if ($buildTools.Count -eq 0) { Missing 'No hay Android Build Tools instaladas' }
     else { Report 'OK' "Build Tools: $(($buildTools.Name) -join ', ')" }
+    foreach ($nativeTool in @('ndk', 'cmake')) {
+        $nativeVersions = @(Get-ChildItem -LiteralPath (Join-Path $sdkRoot $nativeTool) -Directory -ErrorAction SilentlyContinue)
+        if ($nativeVersions.Count -gt 0) { Report 'INFO' "$nativeTool : $(($nativeVersions.Name) -join ', ')" }
+        else { Report 'INFO' "$nativeTool no instalado; opcional para MediaPipe Tasks precompilado, necesario segun el futuro codigo nativo propio." }
+    }
     $license = Join-Path $sdkRoot 'licenses\android-sdk-license'
     if ((Test-Path -LiteralPath $license) -and (Get-Item -LiteralPath $license).Length -gt 0) {
         Report 'OK' 'Hay registro local de licencia Android SDK; cada paquete puede requerir licencias adicionales.'
@@ -103,6 +108,7 @@ if ($sdkRoot -and (Test-Path -LiteralPath $sdkRoot -PathType Container)) {
 
 Report 'INFO' 'La compilacion requiere una app y su Gradle Wrapper; este script no los presupone.'
 Report 'INFO' 'Exito solo confirma requisitos basicos locales; no valida SDK DJI, movil, USB ni dron.'
+Report 'INFO' 'MediaPipe se empaqueta en la app con su modelo. Este diagnostico no comprueba dependencias Gradle, carga nativa ni inferencia real.'
 if ($script:missing -gt 0) { Report 'FALTA' "Carencias basicas: $script:missing"; exit 1 }
 Report 'OK' 'Diagnostico basico completado. Revisar los avisos antes de desarrollar/probar.'
 exit 0
