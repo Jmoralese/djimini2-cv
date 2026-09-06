@@ -34,14 +34,16 @@ duplicados de acciones discretas según el contrato del dron.
 
 ## Puerta de entrada del primer proyecto Android
 
-Al crear la app, añadir y ejecutar con el wrapper las tareas reales de ensamblado
-debug, tests unitarios y lint de la variante simulada. Anotar los comandos exactos
-en README: sus nombres dependerán de las variantes creadas.
+La puerta está en vigor desde T-003. Con el wrapper (`.\gradlew.bat`), las tareas
+reales son `:app:assembleSimDebug`, `:app:testSimDebugUnitTest` y
+`:app:lintSimDebug` para la variante simulada, y `:app:assembleRealDebug` como
+verificación de compilación/empaquetado de la variante DJI; están anotadas en
+README. Ejecutarlas cuando el cambio toque código o build de la app.
 
-Después añadir la verificación de compilación de la variante DJI. La aceptación
-del registro SDK y la conexión se verifican en el teléfono real y se documentan
-por separado. No bajar target SDK ni desactivar lint de forma general para ocultar
-incompatibilidades; cualquier excepción concreta necesita motivo y seguimiento.
+La aceptación del registro SDK y la conexión se verifican en el teléfono real y
+se documentan por separado. No bajar target SDK ni desactivar lint de forma
+general para ocultar incompatibilidades; cualquier excepción concreta necesita
+motivo y seguimiento. El targetSdk inicial (34) está justificado en D-007.
 
 ## Puerta de entrada de visión y control
 

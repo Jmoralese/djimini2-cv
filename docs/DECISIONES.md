@@ -101,3 +101,29 @@ Eso valida distribución/resolución, no compilación Android ni funcionamiento 
 **Revisión:** si cambia la disponibilidad de Maven o se justifica adaptar un
 fragmento de la muestra; conservar entonces su origen/licencia. La próxima base
 Android debe consumir este catálogo y probar el empaquetado de la variante real.
+
+## D-007 · Matriz de la primera app Android · 2026-09-06
+
+**Decisión:** módulo único `app` con dimensión de flavor `drone` (`sim`/`real`),
+`applicationId` **io.github.jmoralese.djimini2cv** (la variante simulada añade
+`.sim`). Matriz que compila en este PC: Gradle **8.14.3** (wrapper versionado con
+checksum), AGP **8.12.0**, Kotlin **2.2.21** con plugin Compose, JDK **17.0.19**,
+compileSdk **36**, minSdk **24**, targetSdk **34**, Compose BOM 2025.06.01.
+
+**Motivo y evidencia:** combinación estable y compatible entre sí con el JDK ya
+disponible; minSdk 24 lo exige MediaPipe Tasks. targetSdk 34 corresponde a la
+adaptación declarada de MSDK V4.18 (Android 14); subirlo sin ensayo real podría
+activar comportamientos de Android 15+ no probados con el SDK. `assembleSimDebug`,
+`testSimDebugUnitTest`, `lintSimDebug` y `assembleRealDebug` pasan; la variante
+simulada se instaló y recorrió en el AVD API 36.
+
+**Detalles DJI comprobados al integrar:** el AAR 4.18 exige `appcompat` y
+`constraintlayout` para enlazar sus recursos (la muestra oficial los declara);
+el cargador SecNeo en 4.18 es `com.cySdkyc.clx.Helper` (no `com.secneo.sdk`);
+las bibliotecas nativas requieren `useLegacyPackaging`. La App Key se inyecta
+desde `local.properties` (`dji.appKey`) como placeholder de manifiesto; sin ella
+el modo real muestra `MissingAppKey` y no intenta registrarse.
+
+**Revisión:** al validar el teléfono real (T-002/T-004) se revisará targetSdk y
+la convivencia con Android 15/16; al integrar MediaPipe, la resolución conjunta
+de dependencias. No subir versiones en bloque mezcladas con funcionalidad.

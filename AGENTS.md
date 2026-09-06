@@ -72,8 +72,11 @@ Las instrucciones explícitas del usuario prevalecen sobre estas normas del proy
 ```powershell
 . .\scripts\Use-AndroidEnv.ps1
 powershell -NoProfile -File .\scripts\Test-AndroidEnvironment.ps1
+.\gradlew.bat :app:assembleSimDebug :app:testSimDebugUnitTest :app:lintSimDebug
+.\gradlew.bat :app:assembleRealDebug
 git diff --check
 ```
 
-Todavía no hay app ni Gradle Wrapper: no inventes comandos de compilación disponibles.
-Cuando se añadan, actualiza README y el contrato de calidad en el mismo cambio.
+El wrapper está versionado; `local.properties` (fuera de Git) aporta `sdk.dir`
+y, para la variante real, `dji.appKey`. Ejecuta las tareas que correspondan al
+cambio según el contrato de calidad; instalar en emulador es `:app:installSimDebug`.

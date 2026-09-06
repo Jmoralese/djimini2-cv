@@ -22,12 +22,27 @@ El [catálogo de versiones](../gradle/libs.versions.toml) fija:
 | `libs.dji.runtime` | `com.dji:dji-sdk:4.18` | `implementation`: biblioteca que se incorpora al APK |
 | `libs.dji.provided` | `com.dji:dji-sdk-provided:4.18` | `compileOnly`: APIs de compilación; no empaquetar este JAR en el APK |
 
-El catálogo no descarga nada por sí solo. Al crear el proyecto Android, Gradle
-cargará `gradle/libs.versions.toml` y el módulo tendrá que consumir esos alias.
-Se versionarán el wrapper, build, configuración y código propios. Los AAR/JAR
-descargados por Gradle pertenecen a su caché, fuera de nuestro repositorio.
+El módulo `app` ya consume estos alias en su variante `real` (T-003/T-004
+parcial): `realImplementation` para el runtime —con `library-anti-distortion`
+excluida— y `realCompileOnly` para `provided`. La variante `sim` no declara ni
+empaqueta DJI. Wrapper, build y código propios están versionados; los AAR/JAR
+descargados por Gradle pertenecen a su caché, fuera del repositorio.
 
-## Integración en la futura app
+Hallazgos al compilar la variante real con AGP 8.12/Kotlin 2.2:
+
+- El AAR exige `androidx.appcompat` y `androidx.constraintlayout` para enlazar
+  sus recursos internos (la muestra oficial los declara); están en el catálogo.
+- El cargador SecNeo de 4.18 es `com.cySdkyc.clx.Helper` y se instala en
+  `attachBaseContext` de la Application (solo variante real).
+- Sus `.so` requieren `jniLibs.useLegacyPackaging = true` y ABIs `arm64-v8a` /
+  `armeabi-v7a`; por eso la variante real no se ejecuta en el AVD x86_64.
+- La App Key se inyecta como placeholder de manifiesto desde `local.properties`
+  (`dji.appKey`); sin ella el modo real muestra un error claro y no registra.
+
+`assembleRealDebug` compila y empaqueta. Registro, conexión y vídeo con mando y
+Mini 2 reales siguen sin probar (T-002/T-004).
+
+## Integración en la app
 
 1. Crear el módulo Kotlin y las variantes de simulación y hardware, con una
    combinación de Gradle/AGP/JDK comprobada. Mantener Android mínimo 24 o el mayor

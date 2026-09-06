@@ -14,9 +14,12 @@ app, sin aplicación MediaPipe separada. El procesamiento visual propio no requi
 ejecutarse en el dron ni en un servidor. La primera integración será de análisis
 sin movimientos; después se validará una rutina de control activada por el usuario.
 
-**Estado:** preparación del repositorio y auditoría del PC. Todavía no hay app,
-APK, Gradle Wrapper ni conexión al dron verificada. El alcance inicial y las
-condiciones para avanzar están en el [contrato de producto](docs/CONTRATO_PRODUCTO.md).
+**Estado:** existe la primera app (módulo `app`, Kotlin + Compose) con dos
+variantes: `sim` (dron simulado, sin bibliotecas DJI) y `real` (MSDK V4.18).
+La pantalla inicial muestra conexión y vídeo; la variante simulada se verificó
+en emulador. La integración DJI compila pero **no** está probada con mando ni
+dron, y requiere una App Key local. El alcance y las condiciones para avanzar
+están en el [contrato de producto](docs/CONTRATO_PRODUCTO.md).
 
 ## Empezar
 
@@ -28,7 +31,21 @@ Desde PowerShell, en la raíz del repositorio:
 
 # Comprueba las herramientas instaladas; no mueve el dron.
 powershell -NoProfile -File .\scripts\Test-AndroidEnvironment.ps1
+
+# Variante simulada: compilar, tests unitarios y lint.
+.\gradlew.bat :app:assembleSimDebug :app:testSimDebugUnitTest :app:lintSimDebug
+
+# Instalarla en un emulador o teléfono conectado por ADB.
+.\gradlew.bat :app:installSimDebug
+
+# Variante real (DJI): verificación de compilación y empaquetado.
+.\gradlew.bat :app:assembleRealDebug
 ```
+
+Para la variante real hace falta una App Key de DJI Developer asociada al
+`applicationId` `io.github.jmoralese.djimini2cv`, guardada fuera de Git en
+`local.properties` como `dji.appKey=...`. Sin ella la app compila y muestra
+un error claro al conectar. `local.properties` también fija `sdk.dir`.
 
 El [informe de entorno](docs/ENTORNO_ANDROID.md) recoge lo encontrado, las pruebas
 realizadas y lo que falta para probar con el teléfono. No hace falta instalar
@@ -59,8 +76,8 @@ de desarrollo y los ejemplos Android V4 que consultarán Codex y Claude.
 
 El SDK se obtiene mediante Gradle desde Maven Central. No hay que copiar el
 repositorio completo de DJI. [libs.versions.toml](gradle/libs.versions.toml) fija
-las dos dependencias V4.18 y su descarga ya se comprobó con Gradle. El módulo
-Android que las consumirá sigue pendiente. [Detalle de integración](docs/INTEGRACION_DJI.md).
+las dependencias V4.18, que consume el módulo `app` solo en su variante `real`.
+[Detalle de integración](docs/INTEGRACION_DJI.md).
 
 ## Git
 
@@ -78,5 +95,6 @@ control de vuelo. [Fuente oficial DJI](https://github.com/dji-sdk/Mobile-SDK-And
 
 El PC tiene las herramientas Android básicas. La auditoría específica de MediaPipe
 y lo que falta para ejecutarlo figuran en [ENTORNO_ANDROID.md](docs/ENTORNO_ANDROID.md).
-Hay un catálogo de dependencias DJI preparado; todavía no hay módulo Android que
-lo consuma, modelo MediaPipe ni APK de este proyecto.
+La matriz que realmente compila está registrada en la decisión D-007 de
+[DECISIONES.md](docs/DECISIONES.md). MediaPipe (dependencia y modelo) sigue
+pendiente de integrar en la app.
