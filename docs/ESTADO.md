@@ -1,9 +1,13 @@
 # Estado para el próximo agente
 
 - Fecha: 2026-09-06.
-- Último cambio: T-003 completada por Claude a petición del propietario
-  («primera versión de la app: conectar el dron y ver el stream de vídeo»).
-  Relevo libre.
+- Último cambio: plan completo de la app en [PLAN_APP.md](PLAN_APP.md) (fichas
+  T-013…T-028 ejecutables con «haz la tarea T-0XX»), creado por Claude a
+  petición del propietario tras completar T-003. Relevo libre.
+- Reparto acordado: el propietario aportará las rutinas de visión por
+  computador; las tareas del plan preparan la app completa tipo DJI Fly y las
+  costuras de visión/control. QuickShots/ActiveTrack/panorámica no los expone
+  el MSDK para Mini 2: el seguimiento será propio (T-026/T-027/T-006).
 - Rama: `main`, remoto `origin`: <https://github.com/Jmoralese/djimini2-cv>.
   Publicar cambios solo si el propietario lo pide.
 - Fase: primera app Android funcional en simulación; integración DJI compilada

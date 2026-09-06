@@ -58,6 +58,7 @@ Gradle ni Kotlin globalmente: el futuro proyecto fijará sus versiones.
 | [AGENTS.md](AGENTS.md) / [CLAUDE.md](CLAUDE.md) | Instrucciones comunes y entrada de cada IA |
 | [Estado](docs/ESTADO.md) | Punto de relevo: qué funciona, qué falta y próximo paso |
 | [Tareas](docs/TAREAS.md) | Secuencia corta de trabajo con criterios de aceptación |
+| [Plan de la app](docs/PLAN_APP.md) | Hoja de ruta completa por fases con fichas T-013…T-028 ejecutables por ID |
 | [Producto](docs/CONTRATO_PRODUCTO.md) | Alcance personal, prioridades y resultados esperados |
 | [Arquitectura](docs/CONTRATO_ARQUITECTURA.md) | Límites del código y decisiones de implementación |
 | [Calidad](docs/CONTRATO_CALIDAD.md) | Qué significa terminado y cómo comprobarlo |

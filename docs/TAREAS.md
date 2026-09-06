@@ -2,6 +2,9 @@
 
 Una tarea activa por checkout; dividir antes de empezar si deja de ser pequeña.
 Las etapas posteriores son una propuesta de orden, no funcionalidades ya entregadas.
+El plan completo de la app (fases, dependencias y fichas T-013…T-028 con
+criterios y verificación) está en [PLAN_APP.md](PLAN_APP.md): un prompt
+«haz la tarea T-0XX» basta para ejecutar cualquiera.
 
 | ID | Estado | Resultado y aceptación |
 | --- | --- | --- |
@@ -17,6 +20,22 @@ Las etapas posteriores son una propuesta de orden, no funcionalidades ya entrega
 | T-011 | Pendiente | Conectar vídeo DJI con MediaPipe en solo análisis; validar detecciones, pérdida de objetivo/vídeo y medir latencia/carga en móvil |
 | T-006 | Futuro | Implementar una rutina de control visual acotada con activación/parada, ejes/límites/caducidad probados y ensayo manual tras T-011 |
 | T-007 | Cuando se solicite | Publicar en GitHub tras elegir visibilidad/licencia y revisar contenido; añadir CI para comandos existentes |
+| T-013 | Pendiente | Navegación multi-pantalla (Inicio, Vuelo, Mapa, Galería, Ajustes); ficha en PLAN_APP.md |
+| T-014 | Pendiente | Telemetría en el gateway y HUD de vuelo; ficha en PLAN_APP.md |
+| T-015 | Pendiente | Framework de órdenes + despegue/aterrizaje con confirmación; ficha en PLAN_APP.md |
+| T-016 | Pendiente | RTH, cancelación y altura de retorno; ficha en PLAN_APP.md |
+| T-017 | Pendiente | Foto y grabación de vídeo con estados de orden; ficha en PLAN_APP.md |
+| T-018 | Pendiente | Ajustes de cámara/exposición según capacidades reales; ficha en PLAN_APP.md |
+| T-019 | Pendiente | Control de gimbal desde la pantalla de vuelo; ficha en PLAN_APP.md |
+| T-020 | Pendiente | Galería de medios de la SD (MediaManager); ficha en PLAN_APP.md |
+| T-021 | Pendiente | Pantalla de mapa y «encontrar mi dron»; ficha en PLAN_APP.md |
+| T-022 | Pendiente | Zonas de vuelo DJI GEO en el mapa; ficha en PLAN_APP.md |
+| T-023 | Pendiente | Capa oficial ENAIRE de zonas UAS; ficha en PLAN_APP.md |
+| T-024 | Pendiente | Pantalla de configuración (seguridad, unidades, acerca de); ficha en PLAN_APP.md |
+| T-025 | Pendiente | Avisos y diagnóstico del dron; ficha en PLAN_APP.md |
+| T-026 | Pendiente | Selección de objetivo y tracking en UI (sin órdenes); ficha en PLAN_APP.md |
+| T-027 | Pendiente | Sesión de control y emisor Virtual Stick; ficha en PLAN_APP.md |
+| T-028 | Futuro | Rutinas automáticas propias tipo QuickShot; ficha en PLAN_APP.md |
 
 ## Próximo paso
 
