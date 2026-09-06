@@ -19,6 +19,11 @@ personal. La separación en paquetes y un adaptador DJI basta inicialmente.
 pendiente de probar en el teléfono y fijar dependencias en el proyecto.
 
 **Evidencia:** [repositorio oficial V4](https://github.com/dji-sdk/Mobile-SDK-Android).
+Verificación específica del modelo: las [notas oficiales Android SDK 4.18](https://developer.dji.com/document/122b5969-d64d-4752-8452-400c41240aa5)
+incluyen explícitamente **DJI Mini 2** en `Supported Products`. La
+[tabla oficial de compatibilidad](https://repair.dji.com/help/content?customId=01700000763&lang=en&paperDocType=ARTICLE&re=US&spaceId=17)
+también confirma Mobile SDK para ese modelo. Soporte documental comprobado el
+2026-09-06; la prueba con el teléfono y firmware reales sigue pendiente.
 La compatibilidad y sus límites se detallan en [ENTORNO_ANDROID.md](ENTORNO_ANDROID.md).
 V5 no se adopta automáticamente como actualización del SDK para este dron.
 

@@ -95,6 +95,10 @@ se mantendrán en configuración local ignorada por Git.
 - **SDK:** la referencia oficial V4 es **4.18**. Mini 2 no aparece en la lista
   de V5. [Repositorio V4](https://github.com/dji-sdk/Mobile-SDK-Android),
   [repositorio V5](https://github.com/dji-sdk/Mobile-SDK-Android-V5).
+- **Confirmación específica V4/Mini 2:** las notas Android SDK **4.18** incluyen
+  expresamente **DJI Mini 2** en `Supported Products`. Se volvió a leer el contenido
+  oficial el 2026-09-06; no se deduce el soporte solo del nombre del portal V4.
+  [Notas oficiales de la versión](https://developer.dji.com/document/122b5969-d64d-4752-8452-400c41240aa5).
 - **Android:** V4.18, publicada el 24-10-2024, anuncia adaptación a Android 14.
   Lista firmware Mini 2 `01.07.0200`; es una referencia de la release, no una
   orden de actualizar el dron. [Notas oficiales DJI](https://developer.dji.com/document/122b5969-d64d-4752-8452-400c41240aa5).

@@ -1,7 +1,7 @@
 # Estado para el próximo agente
 
 - Fecha: 2026-09-06.
-- Último cambio: referencia principal corregida al portal DJI V4 por Codex. Relevo libre.
+- Último cambio: soporte explícito de Mini 2 en Android SDK V4.18 verificado por Codex. Relevo libre.
 - Rama: `main`, sin remoto.
 - Fase: documentación y herramientas; todavía no hay aplicación Android.
 
@@ -11,6 +11,9 @@ La referencia principal indicada por el propietario es el
 [portal DJI Mobile SDK V4](https://developer.dji.com/mobile-sdk-v4/). README, AGENTS,
 contratos de arquitectura/dron y D-002 están actualizados. Se conservan los
 enlaces a guías/API Android V4 y la comprobación de capacidades por modelo.
+Confirmación específica: las notas oficiales de Android SDK 4.18 nombran al
+DJI Mini 2 en `Supported Products`; evidencia enlazada en D-002 y el informe de
+entorno. Se mantiene pendiente la integración con el teléfono y firmware reales.
 
 El objetivo es ejecutar visión por computador con **Google MediaPipe en el móvil**
 y convertir resultados en órdenes DJI para el Mini 2 mediante el mando. El
@@ -28,9 +31,9 @@ y añade la de MediaPipe. No se instaló software ni se modificaron variables gl
 
 ## Comprobaciones realizadas
 
-- Último cambio documental: portal oficial V4 abierto y verificado; referencia
-  anterior sustituida, enlaces locales y diff revisados. No requiere repetir
-  diagnóstico de PC ni ejecutar pruebas Android.
+- Última verificación: tabla oficial DJI y notas Android SDK 4.18 (contenido de
+  la API pública de documentación) leídas; Mini 2 figura como producto soportado.
+  Cambio documental revisado; no se ejecutaron pruebas con hardware.
 
 - Diagnóstico PowerShell 5.1: salida 0; Java/Javac 17.0.19, SDK Manager 20.0,
   ADB 36.0.2, herramientas Android y WHPX disponibles.
