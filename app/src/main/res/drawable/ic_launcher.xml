@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Icono vectorial simple: silueta de cuadricóptero sobre fondo oscuro. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <path
+        android:fillColor="#0B1622"
+        android:pathData="M24,0a24,24 0 1,0 0,48a24,24 0 1,0 0,-48z" />
+    <path
+        android:fillColor="#4DD0E1"
+        android:pathData="M13,13m-6,0a6,6 0 1,0 12,0a6,6 0 1,0 -12,0" />
+    <path
+        android:fillColor="#4DD0E1"
+        android:pathData="M35,13m-6,0a6,6 0 1,0 12,0a6,6 0 1,0 -12,0" />
+    <path
+        android:fillColor="#4DD0E1"
+        android:pathData="M13,35m-6,0a6,6 0 1,0 12,0a6,6 0 1,0 -12,0" />
+    <path
+        android:fillColor="#4DD0E1"
+        android:pathData="M35,35m-6,0a6,6 0 1,0 12,0a6,6 0 1,0 -12,0" />
+    <path
+        android:fillColor="#E8F4F8"
+        android:pathData="M24,17l7,7l-7,7l-7,-7z" />
+</vector>

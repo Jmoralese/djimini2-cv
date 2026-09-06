@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Identificadores de accesorio USB de los mandos DJI, tomados de la muestra
+     oficial V4 (Mobile-SDK-Android, licencia MIT en su código de ejemplo). -->
+<resources>
+    <usb-accessory
+        manufacturer="DJI"
+        model="T600 USB Debug" />
+    <usb-accessory
+        manufacturer="DJI"
+        model="AG410" />
+    <usb-accessory
+        manufacturer="DJI"
+        model="com.dji.logiclink" />
+    <usb-accessory
+        manufacturer="DJI"
+        model="WM160" />
+</resources>

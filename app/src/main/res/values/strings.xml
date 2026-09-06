@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mini2 CV</string>
+    <string name="badge_simulacion">SIMULACIÓN</string>
+    <string name="estado_desconectado">Desconectado</string>
+    <string name="estado_registrando">Registrando SDK…</string>
+    <string name="estado_esperando_dron">Esperando al dron…</string>
+    <string name="estado_conectado">Conectado: %1$s</string>
+    <string name="error_registro">Registro DJI fallido: %1$s</string>
+    <string name="error_falta_app_key">Falta la App Key de DJI. Añade dji.appKey en local.properties y reinstala.</string>
+    <string name="video_sin_senal">Sin vídeo</string>
+    <string name="accion_conectar">Conectar</string>
+    <string name="accion_desconectar">Desconectar</string>
+</resources>
