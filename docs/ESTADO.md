@@ -1,11 +1,22 @@
 # Estado para el próximo agente
 
 - Fecha: 2026-09-06.
-- Último cambio: T-012, distribución y catálogo DJI V4.18 preparados por Codex. Relevo libre.
+- Último cambio: carpeta `referencias/` con capturas de DJI Fly para inspiración
+  de diseño, creada por Claude a petición del propietario. Relevo libre.
+- Cambio anterior: T-012, distribución y catálogo DJI V4.18 preparados por Codex.
 - Rama: `main`, sin remoto.
 - Fase: documentación y herramientas; todavía no hay aplicación Android.
 
 ## Resultado
+
+Nueva carpeta `referencias/` para inputs de diseño e ideas, fuera de la futura
+app: 15 capturas de la app oficial DJI Fly (ficha de APKPure y dos guías) en
+`referencias/dji-fly/`, con índice y fuentes en `referencias/README.md`. Cada
+archivo se verificó como imagen real (JPEG/WEBP) y se revisó su contenido. El
+README avisa de que algunas capturas son de versiones recientes de DJI Fly con
+funciones que el Mini 2 no tiene (ActiveTrack, waypoints): valen como lenguaje
+visual, no como catálogo de funciones. Material de terceros, solo referencia
+interna; no se empaqueta en el APK ni se redistribuye.
 
 SDK DJI mediante Maven Central: se añadió `gradle/libs.versions.toml` con runtime
 y `provided` V4.18, y [INTEGRACION_DJI.md](INTEGRACION_DJI.md) con scopes, variantes
