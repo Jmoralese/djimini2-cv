@@ -1,7 +1,11 @@
 # Estado para el próximo agente
 
-- Fecha: 2026-09-06.
-- Último cambio: plan completo de la app en [PLAN_APP.md](PLAN_APP.md) (fichas
+- Fecha: 2026-09-18.
+- Último cambio: README reescrito (Claude) para que sirva de entrada real al
+  repositorio: motivo de la app, estado honesto por variante, requisitos,
+  estructura de carpetas y rango de fichas corregido a T-013…T-033 (también en
+  TAREAS.md, que decía T-028). Solo documentación; no cambia código ni contratos.
+- Cambio anterior: plan completo de la app en [PLAN_APP.md](PLAN_APP.md) (fichas
   T-013…T-033 ejecutables con «haz la tarea T-0XX»), creado por Claude a
   petición del propietario tras completar T-003. Relevo libre.
 - Motivo confirmado de la app (contrato de producto ampliado): seguimiento
@@ -50,6 +54,9 @@ TAREAS actualizados con los comandos reales.
   «Conectado: Mini 2 (simulado)» con patrón de vídeo animado y Desconectar.
   Captura en `.local/emulador-sim/sim-conectado.png` (fuera de Git).
 - AGP instaló `platforms;android-36` y Build-Tools 35 con licencias ya aceptadas.
+- El cambio del README no ejecutó compilaciones: es documentación. Sus datos se
+  verificaron leyendo `app/build.gradle.kts`, `gradle/libs.versions.toml`,
+  `.gitignore` y el árbol de `app/src`; `git diff --check` limpio.
 - Límites: nada de esto prueba DJI real. No hay teléfono, mando ni dron
   conectados; el registro SDK, el vídeo real y la reconexión física siguen sin
   ensayar. El emulador no ejecuta la variante real (ABIs ARM).

@@ -2,7 +2,7 @@
 
 Una tarea activa por checkout; dividir antes de empezar si deja de ser pequeña.
 Las etapas posteriores son una propuesta de orden, no funcionalidades ya entregadas.
-El plan completo de la app (fases, dependencias y fichas T-013…T-028 con
+El plan completo de la app (fases, dependencias y fichas T-013…T-033 con
 criterios y verificación) está en [PLAN_APP.md](PLAN_APP.md): un prompt
 «haz la tarea T-0XX» basta para ejecutar cualquiera.
 
