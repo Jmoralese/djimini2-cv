@@ -58,8 +58,9 @@ es [docs/ESTADO.md](docs/ESTADO.md).
 - Windows con PowerShell para los scripts de `scripts/`; en otros sistemas,
   `./gradlew` funciona igual.
 
-El [informe de entorno](docs/ENTORNO_ANDROID.md) recoge qué hay instalado en el
-PC, qué se probó y qué falta para ensayar con el teléfono.
+El [inventario del PC](../../operacion/ENTORNO_ANDROID.md) dice qué hay instalado;
+[docs/ENTORNO_ANDROID.md](docs/ENTORNO_ANDROID.md) recoge la compatibilidad DJI y
+MediaPipe y qué falta para ensayar con el teléfono.
 
 ## Empezar
 
@@ -117,7 +118,7 @@ frames a MediaPipe. Lo fija el [contrato de arquitectura](docs/CONTRATO_ARQUITEC
 
 | Documento | Para qué sirve |
 | --- | --- |
-| [AGENTS.md](AGENTS.md) / [CLAUDE.md](CLAUDE.md) | Instrucciones comunes y entrada de cada IA |
+| [AGENTS.md](AGENTS.md) / [CLAUDE.md](CLAUDE.md) | Instrucciones de este proyecto y entrada de cada IA. Las comunes a todas las apps móviles están en `../../AGENTS.md` |
 | [Estado](docs/ESTADO.md) | Punto de relevo: qué funciona, qué falta y próximo paso |
 | [Tareas](docs/TAREAS.md) | Estado de cada tarea con su resultado y aceptación |
 | [Plan de la app](docs/PLAN_APP.md) | Hoja de ruta por fases con fichas T-013…T-033 ejecutables por ID |
@@ -127,8 +128,8 @@ frames a MediaPipe. Lo fija el [contrato de arquitectura](docs/CONTRATO_ARQUITEC
 | [Dron](docs/CONTRATO_DRON.md) | Reglas de conexión, comandos y pruebas con hardware |
 | [Visión](docs/CONTRATO_VISION.md) | Frames DJI, MediaPipe, modelos y paso de observaciones a órdenes |
 | [Integración DJI](docs/INTEGRACION_DJI.md) | Dependencias Maven, catálogo y qué incorporar al proyecto |
-| [Entorno Android](docs/ENTORNO_ANDROID.md) | Herramientas del PC, pruebas hechas y lo que falta |
-| [Colaboración](docs/COLABORACION.md) | Alternancia entre IAs y trabajo simultáneo |
+| [Entorno y compatibilidad](docs/ENTORNO_ANDROID.md) | Compatibilidad del Mini 2 con el MSDK y preparación de MediaPipe; el inventario del PC está en `../../operacion/ENTORNO_ANDROID.md` |
+| [Colaboración](../../operacion/COLABORACION.md) | Alternancia entre IAs y trabajo simultáneo, común a todos los proyectos |
 | [Decisiones](docs/DECISIONES.md) | Decisiones importantes, motivo y condiciones de revisión |
 | [Referencias](referencias/README.md) | Capturas e inspiración de diseño; material ajeno, solo consulta |
 
