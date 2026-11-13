@@ -8,6 +8,10 @@ entre IAs, secretos, modelos, límites duros) están en `../../AGENTS.md`. Codex
 léelo primero; Claude Code lo carga solo. Aquí queda únicamente lo que es de
 este proyecto.
 
+Si `../../AGENTS.md` no existe (sesión en la nube con solo este repo), las reglas comunes son el `AGENTS.md` del repo github.com/Jmoralese/appmoviles: añade ese repo a la sesión y léelo antes de trabajar.
+
+Este proyecto no usa el plugin de la fábrica (`mobile-factory`): Codex y Claude Code trabajan directamente con estas reglas.
+
 ## Al empezar
 
 1. Lee [README.md](README.md), [estado](docs/ESTADO.md) y [tareas](docs/TAREAS.md).
