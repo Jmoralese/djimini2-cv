@@ -61,8 +61,11 @@ Este proyecto no usa el plugin de la fábrica (`mobile-factory`): Codex y Claude
 2. Actualiza `docs/ESTADO.md` (cambios, comprobaciones reales, pendientes,
    siguiente paso) y `docs/TAREAS.md` si cambió una tarea.
 3. Registra en `docs/DECISIONES.md` solo decisiones que condicionen trabajo futuro.
-4. Commit local pequeño y revisado. **No publiques en GitHub hasta que el
-   propietario lo pida.**
+4. Commit local pequeño y revisado. La subida a GitHub sigue la regla común
+   (`../../AGENTS.md`, apartado Git): se sube al cerrar sesión con la copia de
+   seguridad. El repositorio `djimini2-cv` es **público a propósito** (decisión
+   del propietario, 2026-11-14): nunca subas claves de DJI, coordenadas reales
+   de vuelo ni nada que no deba verse.
 
 ## Comandos
 
